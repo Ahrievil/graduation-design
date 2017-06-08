@@ -124,7 +124,8 @@ public class ModServlet extends BaseServlet{
 	public void loadAllName(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
-		String rname = request.getParameter("rname");
+		String rname1 = request.getParameter("rname");
+		String rname = new String((rname1.getBytes("ISO-8859-1")),"UTF-8");
 		System.out.println(rname);
 		List<String> list = service.loadAllName(rname);
 		JSONArray array1 = JSONArray.fromObject(list);

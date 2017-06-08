@@ -19,6 +19,5 @@
 			<attribute name="owner.project.facets" value="jst.web.jstl"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="F:/java/feiq/Recv Files/topson_financial/WebRoot/WEB-INF/lib/struts2-core-2.2.3.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

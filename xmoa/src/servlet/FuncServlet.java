@@ -31,7 +31,8 @@ public class FuncServlet extends BaseServlet{
 	public void queryAllFunByRoname(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
-		String roname = request.getParameter("roname");
+		String roname1 = request.getParameter("roname");
+		String roname = new String((roname1.getBytes("ISO-8859-1")),"UTF-8");
 		List<OaFunctions> list = service.queryFunByRoname(roname);
 		JSONArray array1 = JSONArray.fromObject(list);
 		System.out.println(array1.toString());

@@ -123,7 +123,8 @@ public class FeaServlet extends BaseServlet{
 	public void loadAllName(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
-		String moname = request.getParameter("moname");
+		String moname1 = request.getParameter("moname");
+		String moname = new String((moname1.getBytes("ISO-8859-1")),"UTF-8");
 		System.out.println(moname);
 		List<String> list = service.loadAllName(moname);
 		JSONArray array1 = JSONArray.fromObject(list);

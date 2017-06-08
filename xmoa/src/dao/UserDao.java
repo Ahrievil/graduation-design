@@ -4,11 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import po.OaUser;
+import util.BaseDao;
 import util.jdbcTemplete;
 
-public class UserDao{
+public class UserDao extends BaseDao{
 
 	private jdbcTemplete jt = new jdbcTemplete();
+	@Override
+	public List<Object> queryAllByPage(int beginIndex, int endIndex) {
+		String sql = "select * from (select rownum as num,z.* from (select * from oa_user order by usid asc) z) where num between ? and ?";
+		return jt.findObject(sql, OaUser.class, beginIndex,endIndex);
+	}
+	@Override
+	public int queryCount() {
+		String sql = "select nvl(count(*),0) as cou from oa_user";
+		return jt.queryCount(sql);
+	}
 	public OaUser load(String username){
 		String sql = "select * from oa_user where uname = ?";
 		List<Object> u = jt.findObject(sql, OaUser.class, username);
@@ -29,6 +40,13 @@ public class UserDao{
 		deleteonerow(user.getUsid());
 		String sql = "insert into oa_user values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		int k = jt.update(sql, user.getUsid(),user.getUname(),user.getUpwd(),user.getUsex(),user.getUbirthdate(),user.getUidNum(),user.getUemail(),user.getUtell(),user.getUadd(),user.getUstatus(),user.getUrole(),user.getUbankName(),user.getUbankAcc(),user.getUpay(),user.getUreward(),user.getUpaje(),user.getUhiredate(),user.getUpost(),user.getUother(),user.getUage());
+		System.out.println("user更新的数据量："+k);
+		return k;
+	}
+	public int addOne(OaUser user){
+		System.out.println(user);
+		String sql = "insert into oa_user(UNAME,UPWD,USEX,UBIRTHDATE,UIDNUM,UEMAIL,UTELL,UADD,USTATUS,UROLE,UBANKNAME,UBANKACC,UPAY,UREWARD,UPAJE,UHIREDATE,UPOST,UOTHER,UAGE) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		int k = jt.update(sql, user.getUname(),user.getUpwd(),user.getUsex(),user.getUbirthdate(),user.getUidNum(),user.getUemail(),user.getUtell(),user.getUadd(),user.getUstatus(),user.getUrole(),user.getUbankName(),user.getUbankAcc(),user.getUpay(),user.getUreward(),user.getUpaje(),user.getUhiredate(),user.getUpost(),user.getUother(),user.getUage());
 		System.out.println("user更新的数据量："+k);
 		return k;
 	}

@@ -93,7 +93,6 @@ function zx(){
 	}
 }
 function baocun(){
-	var s=$("#pnodiv").text();
 	var pno=$("#pno").val();
 	var password=$("#password").val();
 	var pname=$("#pname").val();
@@ -116,15 +115,7 @@ function baocun(){
 	var pbankName=$("#pbankName").val();
 	var pbankuser=$("#pbankuser").val();
 	var pdescription=$("#pdescription").val();
-	if(pno==""){
-		alert("员工编号不能为空！");
-	}else if(s=="<FONT color=red>此员工编号已存在</FONT>"){
-		alert("此员工编号已存在！");
-	}else if(s=="<FONT color=red>员工编号长度过短！</FONT>"){
-		alert("员工编号长度过短！");
-	}else if(s=="<FONT color=red>员工编号长度过长！</FONT>"){
-		alert("员工编号长度过长！");
-	}else if(password==""){
+	if(password==""){
 		alert("密码不能为空！");
 	}else if(password.length<5||password.length>10){
 		alert("密码长度不符合要求（应为5-10位）");
@@ -193,7 +184,7 @@ function baocun(){
 	}else if(pdescription.length>300){
 		alert("描述长度过长！");
 	}else{
-		var path="user.do?op=updateAllInfock";
+		var path="user.do?op=addPersonInfo";
 		$("#form").attr("action",path);
 		$("#form").submit();
 	}
@@ -236,7 +227,7 @@ function baocun(){
 														员工编号: 
 													</td>
 													<td width="34%">
-														<input type="text" id="pno" name="pno" style="width: 154px" onblur="pnoo(this);" value=""><font id="pnodiv"  color="red">*</font>
+														<input type="text" id="pno" name="pno" disabled="disabled" style="width: 154px" value="">
 													</td>
 													<td width="16%" align="right" nowrap="nowrap">
 														密码:

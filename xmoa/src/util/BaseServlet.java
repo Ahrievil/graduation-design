@@ -71,7 +71,11 @@ public class BaseServlet extends HttpServlet{
 			Object obj = clazz.newInstance();
 			String result = (String)me.invoke(obj, request,response);
 			if(result != null){
-				request.getRequestDispatcher(result).forward(request, response);
+				if (result.contains("redirect:")) {
+					response.sendRedirect(result.replace("redirect:", ""));
+				} else {
+					request.getRequestDispatcher(result).forward(request, response);
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

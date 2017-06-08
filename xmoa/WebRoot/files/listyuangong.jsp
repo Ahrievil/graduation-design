@@ -191,7 +191,7 @@ function deleteOne(){
 					<td height="30">
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
 							<tr>
-								<td height="62" background="../images/nav04.gif">
+								<td height="62" background="<%=path %>/images/nav04.gif">
 
 									<table width="98%" border="0" align="center" cellpadding="0"
 										cellspacing="0">
@@ -281,45 +281,45 @@ function deleteOne(){
 															操作
 														</td>
 													</tr>
-													<c:forEach var="user" items="${allUserInfo}" varStatus="index">
+													<c:forEach var="list" items="${util.list}" varStatus="index">
 													<tr>
 														<td bgcolor="#FFFFFF">
-															<input type="checkbox" name="delid" value="${user.usid}" />
-															<input type="hidden"  name="hello"  value="${user.usid}">
+															<input type="checkbox" name="delid" value="${list.usid}" />
+															<input type="hidden"  name="hello"  value="${list.usid}">
                  											<input type="hidden"  name="world" >
                  										</td>
 														<td height="20" bgcolor="#FFFFFF">
-															<a href="<%=path%>/servlet/PersonInfoServlet?methodName=QuerypersonInfo2&pno=${user.usid}">${user.usid}</a>
+															<a href="<%=path%>/servlet/PersonInfoServlet?methodName=QuerypersonInfo2&pno=${list.usid}">${list.usid}</a>
 														</td>
 														
 														<td bgcolor="#FFFFFF">
-															<a href="<%=path%>/servlet/PersonInfoServlet?methodName=QuerypersonInfo2&pno=${pro.pno}">${user.uname}</a>
+															<a href="<%=path%>/servlet/PersonInfoServlet?methodName=QuerypersonInfo2&pno=${pro.pno}">${list.uname}</a>
 														</td>
 														<td bgcolor="#FFFFFF">
-															${user.upost}
+															${list.upost}
 														</td>
 														<td bgcolor="#FFFFFF">
-															${user.ustatus }
+															${list.ustatus }
 														</td>
 														<td bgcolor="#FFFFFF">
-															${user.uidNum}
+															${list.uidNum}
 														</td>
 														<td height="20" bgcolor="#FFFFFF">
-															${user.usex }
+															${list.usex }
 														</td>
 														<td height="20" bgcolor="#FFFFFF">
-															${user.uage}
+															${list.uage}
 														</td>
 														<td height="20" bgcolor="#FFFFFF">
-															${user.uemail}
+															${list.uemail}
 														</td>
 														<td height="20" bgcolor="#FFFFFF">
-															${user.utell}
+															${list.utell}
 														</td>
 														<td bgcolor="#FFFFFF">
 														
-															<a href="user.do?op=showUserInfo&usid=${user.usid}">编辑</a>&nbsp;|&nbsp;
-															<a href="<%=path %>/files/yuangongsalary.jsp?pno=${user.usid}">发工资</a>&nbsp;|&nbsp;
+															<a href="user.do?op=showUserInfo&usid=${list.usid}">编辑</a>&nbsp;|&nbsp;
+															<a href="<%=path %>/files/yuangongsalary.jsp?pno=${list.usid}">发工资</a>&nbsp;|&nbsp;
 															<a href="<%=basePath %>servlet/privateControlServlet?methodName=seeWorkInfo&curPage=2&flag=2">任务</a>
 														</td>
 													</tr>
@@ -344,16 +344,13 @@ function deleteOne(){
 									<table width="100%" border="0" align="center" cellpadding="0"
 										cellspacing="0" class="right-font08">
 										<tr>
-											<td width="50%">
-												第 <span class="right-text09">${requestScope.curPage }</span> 页 | 
-												共<span class="right-text09">${requestScope.totalPage }</span> 页
-												| <span class="right-text09">${requestScope.count }</span>条记录</td>
+											<td width="50%">第 <span class="right-text09">${requestScope.curPage>=requestScope.util.totalPage?requestScope.util.totalPage:requestScope.curPage}</span> 页 | 共 <span class="right-text09">${requestScope.util.totalPage }</span> 页 | <span class="right-text09">${requestScope.util.count  }</span>条记录</td>
 											<td width="49%" align="right">
 												[
-												<a href="<%=basePath %>servlet/PersonInfoServlet?methodName=QuerypersonInfo&page=1" class="right-font08">首页</a> |
-												<a href="<%=basePath %>servlet/PersonInfoServlet?methodName=QuerypersonInfo&page=${requestScope.curPage-1>0?requestScope.curPage-1:requestScope.curPage }" class="right-font08">上一页</a> |
-												<a href="<%=basePath %>servlet/PersonInfoServlet?methodName=QuerypersonInfo&page=${requestScope.curPage<requestScope.totalPage?requestScope.curPage+1:requestScope.curPage }" class="right-font08">下一页</a> |
-												<a href="<%=basePath %>servlet/PersonInfoServlet?methodName=QuerypersonInfo&page=${requestScope.totalPage }" class="right-font08">末页</a>] 转至：
+												<a href="user.do?op=queryUserInfo&curPage=1" class="right-font08">首页</a> |
+												<a href="user.do?op=queryUserInfo&curPage=${requestScope.curPage-1>0?requestScope.curPage-1 :'1'}" class="right-font08">上一页</a> |
+												<a href="user.do?op=queryUserInfo&curPage=${requestScope.curPage<requestScope.util.totalPage?requestScope.curPage+1:requestScope.curPage }" class="right-font08">下一页</a> |
+												<a href="user.do?op=queryUserInfo&curPage=${requestScope.util.totalPage}" class="right-font08">末页</a>] 转至：
 											</td>
 											<td width="1%">
 												<table width="20" border="0" cellspacing="0" cellpadding="0">

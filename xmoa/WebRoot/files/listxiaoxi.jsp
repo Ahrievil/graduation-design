@@ -174,11 +174,11 @@ function on_load(){
   <tr>
     <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr>
-        <td height="62" background="<%=path %>images/nav04.gif">
+        <td height="62" background="<%=path %>/images/nav04.gif">
           
 		   <table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
 		  <tr>
-			<td width="21"><img src="<%=path %>images/ico07.gif" width="20" height="18" /></td>
+			<td width="21"><img src="<%=path %>/images/ico07.gif" width="20" height="18" /></td>
 			<td width="550">查看内容：按时间：
 			 <input name="t1" type="text" size="12" /><span class="newfont06">至</span>
 			 <input name="t2" type="text" size="12" />	
@@ -238,7 +238,7 @@ function on_load(){
       </table>
       <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
         <tr>
-          <td height="6"><img src="<%=path %>images/spacer.gif" width="1" height="1" /></td>
+          <td height="6"><img src="<%=path %>/images/spacer.gif" width="1" height="1" /></td>
         </tr>
         <tr>
           <td height="33"><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="right-font08">

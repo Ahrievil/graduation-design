@@ -7,8 +7,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
+
 import net.sf.json.JSONArray;
-import po.OaFunctions;
 import po.OaProject;
 import service.ProService;
 import util.BaseServlet;
@@ -30,7 +31,8 @@ public class ProServlet extends BaseServlet{
 		request.getSession().setAttribute("check", l+"");
 		return "/files/listxiangmuxinxi.jsp";
 	}
-	public String addPro(HttpServletRequest request,HttpServletResponse response){
+	public String addPro(HttpServletRequest request,HttpServletResponse response) throws Exception{
+		request.setCharacterEncoding("UTF-8");
 		String   prName=request.getParameter("proname");
 		String   prClient=request.getParameter("clientno");
 		String   prMoney=request.getParameter("promoney");
@@ -42,6 +44,7 @@ public class ProServlet extends BaseServlet{
 		String   prEndTime=request.getParameter("proendDate");
 		String   prLevel=request.getParameter("promission");
 		String   prOther=request.getParameter("probeizhu");
+		System.out.println("origin prName = "+prName+"prName = "+new String((prName.getBytes("ISO-8859-1")),"UTF-8"));
 		OaProject pro = new OaProject();
 		pro.setPrName(prName);
 		pro.setPrClient(prClient);
@@ -77,7 +80,8 @@ public class ProServlet extends BaseServlet{
 		request.setAttribute("pro", pro);
 		return "/files/editxiangmu.jsp";
 	}
-	public String editPro(HttpServletRequest request,HttpServletResponse response){
+	public String editPro(HttpServletRequest request,HttpServletResponse response) throws Exception{
+		request.setCharacterEncoding("UTF-8");
 		String   prid=request.getParameter("prono");
 		String   prName=request.getParameter("proname");
 		String   prClient=request.getParameter("clientno");

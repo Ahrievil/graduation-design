@@ -82,7 +82,8 @@ public class ReqServlet extends BaseServlet{
 	public void loadAllName(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
-		String prname = request.getParameter("prname");
+		String prname1 = request.getParameter("prname");
+		String prname = new String((prname1.getBytes("ISO-8859-1")),"UTF-8");
 		System.out.println("hehehehehehhehehhe----"+prname);
 		List<String> list = service.loadAllName(prname);
 		JSONArray array1 = JSONArray.fromObject(list);

@@ -3,13 +3,18 @@ package service;
 import java.util.ArrayList;
 import java.util.List;
 
-import po.OaUser;
 import dao.UserDao;
+import po.OaUser;
+import util.PageUtil;
 
 public class UserService {
 
 	UserDao ud = new UserDao();
-	public OaUser login(String username,String pwd){
+	PageUtil pageUtil = new PageUtil();
+	public PageUtil queryByPage(int page){
+		return pageUtil.queryByPage(page, ud);
+	}
+	public OaUser login(String username){
 		return ud.load(username);
 	}
 	public int upload(OaUser user){
@@ -47,5 +52,8 @@ public class UserService {
 			list.add(l.get(i).getUname());
 		}
 		return list;
+	}
+	public int addOne(OaUser oaUser){
+		return ud.addOne(oaUser);
 	}
 }

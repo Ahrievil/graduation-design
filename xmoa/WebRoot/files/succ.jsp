@@ -35,7 +35,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	   		document.getElementById("hello").innerHTML=count;
 	   		if(count==0){
 	   			window.clearInterval(w);
-	   			window.location.href="<%=basePath%>files/listgerenxinxi.jsp";
+	   			window.location.href="<%=basePath%>files/${param.jump}.jsp";
 	   		}
 	   		count--;
 	   }

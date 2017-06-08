@@ -1,5 +1,6 @@
 package po;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
 
 public class OaPlan {
 
@@ -180,18 +181,7 @@ public class OaPlan {
 	}
 	@Override
 	public String toString() {
-		return "OaPlan [plid=" + plid + ", plName=" + plName + ", fename="
-				+ fename + ", prname=" + prname + ", rname=" + rname
-				+ ", moname=" + moname + ", pplid=" + pplid + ", flag=" + flag
-				+ ", plCreateTime=" + plCreateTime + ", plEndTime=" + plEndTime
-				+ ", plStartTime=" + plStartTime + ", plEndDate=" + plEndDate
-				+ ", plCreateDate=" + plCreateDate + ", plMgr=" + plMgr
-				+ ", plWorker=" + plWorker + ", plDateNum=" + plDateNum
-				+ ", plLevel=" + plLevel + ", plType=" + plType
-				+ ", plDownTime=" + plDownTime + ", plHeadPlan=" + plHeadPlan
-				+ ", plStatus=" + plStatus + ", plIsExceed=" + plIsExceed
-				+ ", plExceedDate=" + plExceedDate + ", plOther=" + plOther
-				+ ", isok=" + isok + "]";
+		return ToStringBuilder.reflectionToString(this);
 	}
 	
 }

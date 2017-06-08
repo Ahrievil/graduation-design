@@ -3,6 +3,8 @@ package util;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
+
 
 public class PageUtil {
 
@@ -45,11 +47,7 @@ public class PageUtil {
 	}
 	@Override
 	public String toString() {
-		return "PageUtil [totalPage=" + totalPage + ", count=" + count
-				+ ", list=" + list + ", getTotalPage()=" + getTotalPage()
-				+ ", getCount()=" + getCount() + ", getList()=" + getList()
-				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
-				+ ", toString()=" + super.toString() + "]";
+		return ToStringBuilder.reflectionToString(this);
 	}
 	
 }

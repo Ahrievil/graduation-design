@@ -42,6 +42,7 @@ public class PlanServlet extends BaseServlet{
 	
 	//prono jtitle plHeadPlan jrbegindate jrenddate jbyper jmission jleixing iscomplete xuqiu1 modu feature jbeizhu
 	public String insert(HttpServletRequest request,HttpServletResponse response) throws ParseException{
+		System.out.println("request.getQueryString(): " + request.getQueryString());
 		String prname = request.getParameter("prono");
 		String plName = request.getParameter("jtitle");
 		String plHeadPlan = request.getParameter("plHeadPlan");

@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 String path = request.getContextPath();
@@ -110,6 +110,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  				$("#probeizhu").attr("value",'');
  			}else{
  				form1.action="pro.do?op=addPro";
+ 				form1.method="post";
 	  			form1.submit();
  			}
  }
@@ -175,7 +176,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 																	}
 																}
 															}
-															xmlHttp.open("get", "cus.do?op=getAllInfo&v=" + Math.random(),
+															xmlHttp.open("post", "cus.do?op=getAllInfo&v=" + Math.random(),
 																	true);
 															xmlHttp.onreadystatechange = function() {
 																if (xmlHttp.readyState == 4 && xmlHttp.status==200) {
@@ -234,7 +235,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 																	}
 																}
 															}
-															xmlHttp.open("get", "user.do?op=loadAllMgr&v=" + Math.random(),true);
+															xmlHttp.open("post", "user.do?op=loadAllMgr&v=" + Math.random(),true);
 															xmlHttp.onreadystatechange = function() {
 																if (xmlHttp.readyState == 4 && xmlHttp.status==200) {
 																	var json = eval("("+xmlHttp.responseText+")");

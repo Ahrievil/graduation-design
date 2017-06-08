@@ -29,7 +29,7 @@ public class FileDao extends BaseDao{
 		return list.size()==1?(OaFile)list.get(0):null;
 	}
 	public int insert(OaFile file){
-		String sql = "insert into oa_file(flid,flName,flSize,flType,prName,flupdate,fluper) values((select nvl(max(flid),0) from oa_file),?,?,?,?,to_date(?,'yyyy-MM-dd'),?)";
+		String sql = "insert into oa_file(flid,flName,flSize,flType,prName,flupdate,fluper) values((select nvl(max(flid),0)+1 from oa_file),?,?,?,?,to_date(?,'yyyy-MM-dd'),?)";
 		return jt.update(sql,file.getFlName(),file.getFlSize(),file.getFlType(),file.getPrName(),file.getFlupdate(),file.getFluper());
 	}
 }

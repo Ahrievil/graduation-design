@@ -1,5 +1,6 @@
 package servlet;
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.ServletConfig;
@@ -47,6 +48,10 @@ public class UploadServlet extends HttpServlet {
 		    prName = new String(v,"utf-8");
 		    ServletContext application = config.getServletContext();
 		    String realpath = application.getRealPath("/upload");
+		    File useLessFile = new File(realpath);
+		    if(!useLessFile.exists()){
+		    	useLessFile.createNewFile();
+		    }
 		    System.out.println(realpath);
 		   //保存上传的文件
 		    try {

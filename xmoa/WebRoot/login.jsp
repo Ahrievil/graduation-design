@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
 <link rel = "icon" href = "logo2.ico" type = "image/x-icon" />
-<title>项目管理系统 by www.eyingda.com</title>
+<title>项目管理系统 by 田宇</title>
 <style type="text/css">
 <!--
 body {
@@ -21,7 +21,6 @@ body {
 -->
 </style>
 <link href="css/css.css" rel="stylesheet" type="text/css" />
-
 <script type="text/javascript">
 	
 	$(document).ready(function (){
@@ -43,7 +42,7 @@ body {
 				alert("请输入验证码！");
 				return;
 			}
-			$("#fom").attr("action","<%=basePath %>loginServlet?methodName=dengru");
+			$("#fom").attr("action","user.do?op=login");
 		});
 	});
 </script>
@@ -51,7 +50,7 @@ body {
 	$(document).ready(function (){
 		$("#lin").click(function (){
 			
-			$("#imag").attr("src","<%=basePath %>CheckCodeServlet?haha="+Math.random());
+			$("#imag").attr("src","<%=basePath %>/img?haha="+Math.random());
 		});
 	});
 </script>
@@ -87,7 +86,7 @@ body {
         <td width="69%">${requestScope.result }</td>
       </tr>
       <tr>
-        <td width="31%" height="35" class="login-text02">用户名称：<br /></td>
+        <td width="31%" height="35" class="login-text02">用户名：<br /></td>
         <td width="69%"><input name="textfield" type="text" size="30" /></td>
       </tr>
       <tr>
@@ -96,10 +95,10 @@ body {
       </tr>
       <tr>
         <td height="35" class="login-text02">验证图片：<br /></td>
-        <td><img id = "check" src="<%=path %>/img" width="109" height="40" /> <a href="" id = "lin"class="login-text03">看不清楚，换张图片</a></td>
+        <td><img id = "check" src="<%=basePath %>/img" width="109" height="40" /> <a href="" id = "lin"class="login-text03">看不清楚，换张图片</a></td>
       </tr>
       <tr>
-        <td height="35" class="login-text02">请输入验证码：</td>
+        <td height="35" class="login-text02">验证码：</td>
         <td><input name="textfield3" type="text" size="30" /></td>
       </tr>
       <tr>

@@ -14,6 +14,7 @@ import po.OaUser;
 import service.FunService;
 import service.UserService;
 import util.BaseServlet;
+import util.PageUtil;
 import dao.UserDao;
 
 public class UserServlet extends BaseServlet {
@@ -26,8 +27,8 @@ public class UserServlet extends BaseServlet {
 		String check = request.getParameter("textfield3");
 		String check_code = (String) request.getSession().getAttribute("check_code");
 		String result = "登录失败";
-		OaUser user = new UserDao().load(username);
-		if (user != null) {
+		OaUser user = service.login(username);
+		if (user != null/* && (check_code != null && check_code.equals(check))*/) {
 			if (user.getUpwd().equals(pwd)) {
 				result = "登录成功";
 			}
@@ -110,12 +111,61 @@ public class UserServlet extends BaseServlet {
 		service.upload(user);
 		request.getSession().removeAttribute("currentuser");
 		request.getSession().setAttribute("currentuser", user);
-		return "/files/succ.jsp";
+		return "/files/succ.jsp?jump=listgerenxinxi";
+	}
+	public String addPersonInfo(HttpServletRequest request,
+			HttpServletResponse response) {
+		String uname = request.getParameter("pname"); // 人员真实姓名
+		String upost = request.getParameter("zwno");// 职位
+		String ustatus = request.getParameter("plei");// 员工类型 0实习 1在职
+		String uidNum = request.getParameter("pid");// 身份证号；
+		String usex = request.getParameter("psex");// 性别；
+		String ubirthdate = request.getParameter("pbirthday");// 出生时间
+		String uadd = request.getParameter("paddr");// 居住地址
+		String utell = request.getParameter("ptelephone");// 联系电话
+		String uemail = request.getParameter("pemail");// email
+		String upwd = request.getParameter("ppassword");// 密码,用于用户登入
+		String ubankName = request.getParameter("pbankName"); // 银行名称
+		String ubankAcc = request.getParameter("pbankuser");// 银行账号
+		String upay = request.getParameter("pfsalary");// 基本工资
+		String ureward = request.getParameter("pgsalary");// 奖金
+		String upaje = request.getParameter("posalary");// 其他补助
+		String uhiredate = request.getParameter("pbydate");// 入职时间
+		String uother = request.getParameter("pdescription");// 描述
+		String urole = request.getParameter("jueno");// 权限角色
+		OaUser user = new OaUser();
+		user.setUname(uname);
+		user.setUpost(upost);
+		user.setUstatus(ustatus);
+		user.setUidNum(uidNum);
+		user.setUsex(usex);
+		user.setUbirthdate(ubirthdate);
+		user.setUadd(uadd);
+		user.setUtell(utell);
+		user.setUemail(uemail);
+		user.setUpwd(upwd);
+		user.setUbankName(ubankName);
+		user.setUbankAcc(ubankAcc);
+		user.setUpay(Float.parseFloat(upay));
+		user.setUreward(Float.parseFloat(ureward));
+		user.setUpaje(Float.parseFloat(upaje));
+		user.setUhiredate(uhiredate);
+		user.setUother(uother);
+		user.setUrole(urole);
+		service.addOne(user);
+		return "redirect:user.do?op=queryUserInfo";
 	}
 	public String queryUserInfo(HttpServletRequest request,HttpServletResponse response){
-		List<OaUser> list = service.loadAll();
-		System.out.println(list.size());
-		request.setAttribute("allUserInfo", list);
+		String curPage = request.getParameter("curPage");
+		System.out.println("curPage======>" + curPage);
+		if (curPage == null || curPage == "") {
+			curPage = "1";
+		}
+		PageUtil util = service.queryByPage(Integer.parseInt(curPage));
+		request.setAttribute("util", util);
+		request.setAttribute("curPage", curPage);
+		Long l = System.currentTimeMillis();
+		request.getSession().setAttribute("check", l+"");
 		return "/files/listyuangong.jsp";
 	}
 	public String showUserInfo(HttpServletRequest request,HttpServletResponse response){
@@ -192,8 +242,8 @@ public class UserServlet extends BaseServlet {
 	}
 	//json使用的queryall
 	public void queryUserInfoauto(HttpServletRequest request,HttpServletResponse response) throws IOException{
-		PrintWriter out = response.getWriter();
 		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
 		List<OaUser> list = service.loadAll();
 		JSONArray array1 = JSONArray.fromObject(list);
 		System.out.println(array1.toString());
@@ -202,8 +252,8 @@ public class UserServlet extends BaseServlet {
 		out.close();
 	}
 	public void loadAllWorker(HttpServletRequest request,HttpServletResponse response) throws IOException{
-		PrintWriter out = response.getWriter();
 		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
 		List<String> list = service.loadAllWorker();
 		JSONArray array1 = JSONArray.fromObject(list);
 		System.out.println(array1.toString());

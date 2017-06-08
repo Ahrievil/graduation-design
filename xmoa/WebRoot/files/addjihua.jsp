@@ -259,7 +259,6 @@ function save1(){
 													
 													 <script>
 														function flureq(){
-															
 															var pn = document.getElementById("prono").value;
 															var x = document.getElementById("xuqiu1");
 															if(pn!=null){
@@ -591,7 +590,7 @@ function save1(){
 		
 		<TR>
 			<TD colspan="2" align="center" height="50px">
-			<input type="button" name="save"  id='save' value="保存" onclick="save1();"  class="button" />　			
+			<input type="button" name="save" id='save' value="保存" onclick="save1();"  class="button" />　			
 		<input type="button" name="Submit2" value="返回" class="button" onclick="window.history.go(-1);"/>			
 		</TR>
 		</TABLE>
